@@ -5,8 +5,6 @@ import {
   Briefcase, 
   Users, 
   Home, 
-  Sun, 
-  Moon, 
   Bell, 
   LayoutDashboard, 
   User, 
@@ -18,10 +16,12 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
-import { useTheme } from "next-themes";
+
 import { useEffect, useState } from "react";
 
 import { ThemeSwitch } from "./ThemeSwitch";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 
 
@@ -30,19 +30,18 @@ import { ThemeSwitch } from "./ThemeSwitch";
 export default function NavBar2 () {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const { theme } = useTheme();
 
     const [mounted, setMounted] = useState(false);
    
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [activeRoute, setActiveRoute] = useState("Home");
+    // const [activeRoute, setActiveRoute] = useState("Home");
 
     useEffect(() => { setMounted(true);}, []);
 
+    const pathname = usePathname('Home');
 
     if (!mounted) return null;
 
-  
 
   const navLinks = [
     { label: "Home", href: "/", icon: Home },
@@ -101,16 +100,16 @@ export default function NavBar2 () {
           {/* CENTER: Desktop Nav Links */}
           <ul className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => {
-              const isActive = activeRoute === link.label;
+              const isActive = pathname === link.label;
               return (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                     onClick={() => setActiveRoute(link.label)}
+                    //  onClick={() => setActiveRoute(link.label)}
                      className={`
                             relative px-4 py-2 text-sm font-semibold transition-colors
                             ${
-                            isActive
+                            pathname === link.href
                                 ? "text-[var(--primary)] dark:text-[var(--accent)]"
                                 : "text-[var(--muted)]"
                             }
@@ -140,16 +139,7 @@ export default function NavBar2 () {
             {/* Theme Switcher */}
 
             <ThemeSwitch></ThemeSwitch>
-            {/* <Button
-              isIconOnly
-              variant="light"
-              radius="full"
-              style={{ color: isDarkMode ? "#FFC300" : "#6B7280" }}
-              onClick={() => setIsDarkMode(!isDarkMode)}
-              aria-label="Toggle Theme"
-            >
-              {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </Button> */}
+        
 
             {/* Authenticated View vs Guest View */}
             {isLoggedIn ? (
@@ -197,10 +187,12 @@ export default function NavBar2 () {
                         dark:border-[var(--accent)]
                     "
                   >
-                    <img
+                    <Image
                       src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
                       alt="Avatar User"
                       className="h-full w-full object-cover"
+                      width={36}
+                      height={36}
                     />
                   </div>
                   

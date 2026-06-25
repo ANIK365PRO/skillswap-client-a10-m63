@@ -1,7 +1,6 @@
+'use client'
 
-
-import React from "react";
-import { Link } from "@heroui/react";
+// import { useState } from "react";
 import { Layers } from "lucide-react";
 
 import {
@@ -11,15 +10,22 @@ import {
 } from "@gravity-ui/icons";
 
 import { TwitterNew } from "@deemlol/next-icons";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  // const [activeRoute, setActiveRoute] = useState("Home");
   const currentYear = new Date().getFullYear();
 
+  const pathname = usePathname();
+  if (!pathname) return null;
+
+
   const navigationLinks = [
-    { label: "Home", href: "#" },
-    { label: "Browse Tasks", href: "#" },
-    { label: "Freelancers", href: "#" },
-    { label: "Sign In", href: "#" },
+        { label: "Home", href: "/"},
+        { label: "Browse Tasks", href: "/brows-tasks"},
+        { label: "Browse Freelancers", href: "/browse-freelancers"},
+        { label: "Sign In", href: "auth/login" },
   ];
 
   const socialLinks = [
@@ -100,14 +106,17 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="
-                      text-sm
-                      text-[var(--muted)]
-                      transition-colors duration-200
-                      hover:text-[var(--primary)]
-                      dark:hover:text-[var(--accent)]
-                    "
+
+                    className={`
+                      text-sm transition-colors hover:text-[var(--primary)] dark:hover:text-[var(--accent)] font-semibold
+                      ${
+                        pathname === link.href
+                          ? ""
+                          : "text-[var(--muted)]"
+                      }
+                    `}
                   >
+
                     {link.label}
                   </Link>
                 </li>

@@ -3,36 +3,40 @@
 
 :root {
   /* Brand Colors */
-  --primary: #0F4C81;
-  --secondary: #1E6091;
-  --accent: #FFC300;
+  --primary: #0F4C81;     /* Buttons, Links, /Highlights, Active states */
+  --secondary: #1E6091;   
+  --accent: #FFC300;      /*CTA Buttons, Badges, /Important Highlights */
 
   /* Light Mode */
-  --background: #F8FAFC;
-  --surface: #FFFFFF;
-  --foreground: #111827;
-  --muted: #6B7280;
-  --border: #E5E7EB;
+  --background: #F8FAFC;    /*Background*/
+  --surface: #FFFFFF;       /*Card*/
+  --border: #E5E7EB;        /*Border*/
+  --foreground: #111827;    /*Heading*/
+  --muted: #6B7280;         /*Text*/
+  --mutedText: #9CA3AF;     /*Muted Text*/
 
   --success: #10B981;
   --warning: #F59E0B;
   --danger: #EF4444;
+  --info: #0ea5e9;
+
 }
 
 .dark {
   /* Dark Mode */
-  --background: #0F172A;
-  --surface: #1E293B;
-  --foreground: #F8FAFC;
-  --muted: #CBD5E1;
-  --border: #334155;
+  --background: #0F172A;    /*Background*/
+  --surface: #1E293B;       /*Card*/
+  --border: #334155;        /*Border*/
+  --foreground: #F8FAFC;    /*Heading*/
+  --muted: #CBD5E1;         /*Text*/
+  --mutedText: #94A3BB;     /*Muted Text*/
+
 }
 
 
 body {
   background: var(--background);
   color: var(--foreground);
-  border: var(--border)
 }
 
 /* @import "tailwindcss";
