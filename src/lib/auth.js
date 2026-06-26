@@ -13,4 +13,16 @@ export const auth = betterAuth({
   database: mongodbAdapter(db, {
     client
   }),
+
+
+
+  // role base authentication to additional fields. 
+
+//   user: {
+//     additionalFields: {
+//       role: {
+//         default: "client"
+//       }
+//     }
+//   }
 });
