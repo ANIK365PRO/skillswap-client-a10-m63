@@ -109,11 +109,7 @@ export default function Footer() {
 
                     className={`
                       text-sm transition-colors hover:text-[var(--primary)] dark:hover:text-[var(--accent)] font-semibold
-                      ${
-                        pathname === link.href
-                          ? ""
-                          : "text-[var(--muted)]"
-                      }
+                      text-[var(--muted)]
                     `}
                   >
 
@@ -191,6 +187,7 @@ export default function Footer() {
                       hover:-translate-y-0.5
                       hover:shadow-md
                       hover:text-[var(--primary)]
+                      hover:border-[var(--primary)]
                       dark:hover:text-[var(--accent)]
                       dark:hover:border-[var(--accent)]
                     "

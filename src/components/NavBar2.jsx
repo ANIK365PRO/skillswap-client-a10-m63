@@ -34,7 +34,7 @@ export default function NavBar2 () {
     const [mounted, setMounted] = useState(false);
    
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    // const [activeRoute, setActiveRoute] = useState("Home");
+    // const [activeRoute, setActiveRoute] = useState();
 
     useEffect(() => { setMounted(true);}, []);
 
@@ -116,7 +116,7 @@ export default function NavBar2 () {
                         `}
                   >
                     {link.label}
-                    {isActive && (
+                    {pathname===link.href && (
                       <motion.div
                         layoutId="activeIndicator"
                          className="
@@ -145,7 +145,7 @@ export default function NavBar2 () {
             {isLoggedIn ? (
               <>
                 {/* Alert Notifications */}
-                <Button
+                {/* <Button
                   isIconOnly
                   variant="light"
                   radius="full"
@@ -160,10 +160,10 @@ export default function NavBar2 () {
                         bg-[var(--accent)]
                     "/>
                   <Bell className="h-5 w-5" />
-                </Button>
+                </Button> */}
 
                 {/* Dashboard Button */}
-                <Button
+                {/* <Button
                   size="sm"
                   variant="flat"
                   className="
@@ -176,7 +176,7 @@ export default function NavBar2 () {
                   startContent={<LayoutDashboard className="h-4 w-4" />}
                 >
                   Dashboard
-                </Button>
+                </Button> */}
 
                 {/* Profile Profile Dropdown Menu */}
                 <div className="group relative flex items-center gap-1 cursor-pointer pl-1">
@@ -223,6 +223,7 @@ export default function NavBar2 () {
                     >
                       <User className="h-4 w-4" /> Profile
                     </Link>
+
                     <Link 
                       href="#" 
                       className="
@@ -235,6 +236,8 @@ export default function NavBar2 () {
                     >
                       <LayoutDashboard className="h-4 w-4" /> Dashboard
                     </Link>
+
+
                     <hr className="my-1 border-[var(--border)]"/>
                     <button 
                       onClick={() => setIsLoggedIn(false)}
@@ -248,17 +251,19 @@ export default function NavBar2 () {
             ) : (
               <>
                 {/* Guest State Buttons */}
-                <Button 
-                  variant="light" 
-                  size="sm"
-                  className="
-                    font-semibold
-                    text-[var(--muted)]
-  "
-                  onClick={() => setIsLoggedIn(true)}
-                >
-                  Sign In
-                </Button>
+                <Link href="/auth/login">
+                    <Button 
+                        variant="light" 
+                        size="sm"
+                        className="
+                          font-semibold
+                          text-[var(--muted)]
+        "
+                        // onClick={() => setIsLoggedIn(true)}
+                      >
+                        Sign In
+                    </Button>
+                </Link>
                 <Link href="/auth/register">
                     <Button 
                   size="sm"
@@ -279,7 +284,12 @@ export default function NavBar2 () {
           </div>
         </header>
 
+
+
+
         {/* MOBILE SLIDE-DOWN DRAWER MENU */}
+
+
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div 
@@ -295,14 +305,14 @@ export default function NavBar2 () {
             >
               <ul className="flex flex-col gap-1 p-4">
                 {navLinks.map((link) => {
-                  const isActive = activeRoute === link.label;
+                  const isActive = pathname === link.label;
                   const LinkIcon = link.icon;
                   return (
                     <li key={link.label}>
                       <Link
                         href={link.href}
                         onClick={() => {
-                          setActiveRoute(link.label);
+                          // setActiveRoute(link.label);
                           setIsMenuOpen(false);
                         }}
                         className={`
@@ -310,8 +320,8 @@ export default function NavBar2 () {
                             text-sm font-semibold transition-colors
 
                             ${
-                                isActive
-                                ? "bg-[rgba(15,76,129,0.1)] text-[var(--primary)] dark:bg-[rgba(255,195,0,0.1)] dark:text-[var(--accent)]"
+                                pathname===link.href
+                                ? "text-[var(--primary)] dark:text-[var(--accent)]"
                                 : "text-[var(--muted)]"
                             }
                             `}
