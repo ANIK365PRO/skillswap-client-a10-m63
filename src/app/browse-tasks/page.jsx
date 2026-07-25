@@ -1,6 +1,6 @@
 
 
-const BrowsTasksPage = () => {
+const BrowseTasksPage = () => {
     return (
         <div>
             <h2>BrowsTasksPage</h2>
@@ -8,4 +8,4 @@ const BrowsTasksPage = () => {
     );
 };
 
-export default BrowsTasksPage;
+export default BrowseTasksPage;

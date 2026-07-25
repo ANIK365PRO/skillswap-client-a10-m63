@@ -23,7 +23,7 @@ export default function Footer() {
 
   const navigationLinks = [
         { label: "Home", href: "/"},
-        { label: "Browse Tasks", href: "/brows-tasks"},
+        { label: "Browse Tasks", href: "/browse-tasks"},
         { label: "Browse Freelancers", href: "/browse-freelancers"},
         { label: "Sign In", href: "auth/login" },
   ];
@@ -44,9 +44,9 @@ export default function Footer() {
         transition-colors duration-300
       "
     >
-      <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-7xl px-6 py-16 md:px-8 lg:px-12">
         {/* Main Grid */}
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-4 lg:gap-16">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-16">
           {/* Brand */}
           <div className="flex flex-col gap-5">
             <Link
@@ -206,10 +206,9 @@ export default function Footer() {
             mt-16 border-t pt-8
             border-[var(--border)]
 
-            flex flex-col items-center
+            flex flex-col md:flex-row items-center
             justify-between gap-4
-
-            sm:flex-row
+            text-center text-sm
           "
         >
           <p

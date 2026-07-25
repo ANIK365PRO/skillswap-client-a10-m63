@@ -113,6 +113,7 @@ const RegisterForm = () => {
 
       const payload = {
         role:data.role, 
+        plan: "free",
         name: data.name,
         email: data.email,
         password: data.password,
@@ -166,7 +167,7 @@ const RegisterForm = () => {
       try {
         await authClient.signIn.social({
           provider: "google",
-          callbackURL: "/dashboard/client",
+          callbackURL: "/",
         });
       } catch (error) {
         console.error(error);
@@ -243,7 +244,7 @@ const RegisterForm = () => {
 
                 <Button
                   type="button"
-                  variant="bordered"
+                  variant="outline"
                   className="w-full h-12 border-[var(--border)]"
                   onPress={handleGoogleLogin}
                 >

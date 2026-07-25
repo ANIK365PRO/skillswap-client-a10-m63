@@ -14,15 +14,43 @@ export const auth = betterAuth({
     client
   }),
 
+  socialProviders: {
+        google: { 
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET 
+        }, 
+  },
 
 
   // role base authentication to additional fields. 
 
-//   user: {
-//     additionalFields: {
-//       role: {
-//         default: "client"
-//       }
-//     }
-//   }
+  user: {
+    additionalFields: {
+      role: {
+        defaultValue: 'client',
+      },
+      plan: {
+        defaultValue: 'free',
+      }
+    }
+  },
+
+  // when user use google login, we can set the default role and plan for the user.
+  databaseHooks: {
+    user: {
+      create: {
+        before: async (user) => {
+          return {
+            data: {
+              ...user,
+              role: user.role || "client",
+              plan: user.plan || "free",
+            },
+          };
+        },
+      },
+    },
+  },
+
+
 });
