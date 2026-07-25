@@ -19,7 +19,9 @@ export default function Footer() {
 
   const pathname = usePathname();
   if (!pathname) return null;
-
+  if(pathname.includes('/dashboard')) {
+      return null;
+    }
 
   const navigationLinks = [
         { label: "Home", href: "/"},

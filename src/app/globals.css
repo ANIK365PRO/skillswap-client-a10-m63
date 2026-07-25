@@ -20,6 +20,8 @@
   --danger: #EF4444;
   --info: #0ea5e9;
 
+  --sidebar-width: 18rem;
+  --sidebar-bg: var(--surface);
 }
 
 .dark {
@@ -31,6 +33,7 @@
   --muted: #CBD5E1;         /*Text*/
   --mutedText: #94A3BB;     /*Muted Text*/
 
+  --sidebar-bg: #162033;
 }
 
 

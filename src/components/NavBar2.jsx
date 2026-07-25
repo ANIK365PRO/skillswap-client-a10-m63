@@ -29,7 +29,7 @@ import { authClient } from "@/lib/auth-client";
 
 
 export default function NavBar2 () {
-
+    
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -39,7 +39,7 @@ export default function NavBar2 () {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [activeRoute, setActiveRoute] = useState();
 
-
+    // const pathname = usePathname()
 
     const { data: session } = authClient.useSession();
 
@@ -62,6 +62,9 @@ export default function NavBar2 () {
     useEffect(() => { setMounted(true);}, []);
 
     const pathname = usePathname('Home');
+    if(pathname.includes('/dashboard')) {
+      return null;
+    }
 
     if (!mounted) return null;
 
