@@ -66,16 +66,16 @@ import { authClient } from "@/lib/auth-client";
 //   admin: "Admin Dashboard",
 // };
 
-export default function SidebarMenu() {
+export default function SidebarMenu({user}) {
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
 
-   const { data: session } = authClient.useSession();
-   const user = session?.user;
+  //  const { data: session } = authClient.useSession();
+  //  const user = session?.user;
 
-  const role = user?.role || "client";
+  const role = user?.role;
   const navItems = NAV_CONFIG[role] || NAV_CONFIG.client;
   const dashboardLabel = ROLE_LABELS[role] || "Dashboard";
 
@@ -90,7 +90,7 @@ export default function SidebarMenu() {
     try {
       setLoggingOut(true);
       await authClient.signOut();
-      router.push("/login");
+      router.push("/");
     } catch (err) {
       console.error("Logout failed:", err);
     } finally {

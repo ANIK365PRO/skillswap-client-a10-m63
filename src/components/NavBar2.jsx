@@ -43,7 +43,7 @@ export default function NavBar2 () {
     const { data: session } = authClient.useSession();
 
     const user = session?.user;
-    const role = user?.role || "client";
+    const role = user?.role ;
     // console.log('user' , user)
 
     const handleLogout = async () => {

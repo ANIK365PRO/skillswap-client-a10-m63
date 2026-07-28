@@ -2,11 +2,16 @@ import { Chip, Card, Separator } from "@heroui/react";
 import { CircleDollar } from "@gravity-ui/icons";
 
 import { getMyTaskById } from "@/lib/api/task";
+import ProposalForm from "@/components/dashboard/freelancer/ProposalForm";
+import { getUserSession } from "@/lib/core/session";
 
 const TaskDetailsPage = async ({ params }) => {
   const { id } = await params;
 
   const task = await getMyTaskById(id);
+  console.log(task)
+
+  const user = await getUserSession()
 
   return (
     <div className="mx-auto max-w-5xl p-6">
@@ -123,6 +128,10 @@ const TaskDetailsPage = async ({ params }) => {
         </p>
 
         {/* ProposalForm Component */}
+
+        <ProposalForm taskId={task?._id} freelancerEmail={user?.email} ></ProposalForm>
+
+
       </Card>
     </div>
   );

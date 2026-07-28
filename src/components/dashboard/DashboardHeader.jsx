@@ -24,7 +24,7 @@ export default function DashboardHeader({
       {/* LEFT */}
       <div className="flex min-w-0 items-center gap-2 sm:gap-4">
         {/* Mobile Sidebar Button */}
-        <SidebarMenu />
+        <SidebarMenu user={user}/>
 
         <div className="min-w-0">
           <h1 className="truncate text-base sm:text-xl md:text-2xl font-bold">

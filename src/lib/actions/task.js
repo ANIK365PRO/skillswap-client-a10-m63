@@ -21,3 +21,9 @@ export const updateTaskPost = async (id, data) => {
 export const deleteTaskPost = async (id) => {
     return serverDeleteMutation(`/api/tasks/${id}`)
 }
+
+
+// 'POST' api for proposal
+export const createProposal = async (proposalData) => {
+  return serverMutation("/api/proposals",proposalData);
+};

@@ -18,7 +18,7 @@ const DashboardLayout = async ({ children }) => {
 
   return (
     <div className="flex min-h-screen bg-[var(--background)]">
-        <DashboardSidebar />
+        <DashboardSidebar user={user} />
 
         <div className="flex-1">
             <DashboardHeader user={user} />

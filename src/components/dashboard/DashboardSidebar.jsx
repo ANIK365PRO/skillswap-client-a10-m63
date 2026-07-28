@@ -7,15 +7,15 @@ import { useState } from "react";
 import { NAV_CONFIG, ROLE_LABELS } from "@/lib/navConfig";
 import { authClient } from "@/lib/auth-client";
 
-export default function DashboardSidebar() {
+export default function DashboardSidebar({user}) {
   const pathname = usePathname();
   const router = useRouter();
   const [loggingOut, setLoggingOut] = useState(false);
 
-  const { data: session } = authClient.useSession();
-  const user = session?.user;
+  // const { data: session } = authClient.useSession();
+  // const user = session?.user;
 
-  const role = user?.role || "client";
+  const role = user?.role;
   const navLinks = NAV_CONFIG[role] || NAV_CONFIG.client;
   const dashboardLabel = ROLE_LABELS[role] || "Dashboard";
 
@@ -30,7 +30,7 @@ export default function DashboardSidebar() {
     try {
       setLoggingOut(true);
       await authClient.signOut();
-      router.push("/login");
+      router.push("/");
     } catch (err) {
       console.error("Logout failed:", err);
     } finally {
