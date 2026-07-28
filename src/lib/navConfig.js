@@ -16,13 +16,24 @@ export const NAV_CONFIG = {
     { label: "Settings", href: "/dashboard/client/settings", icon: Settings },
   ],
   freelancer: [
-    { label: "Dashboard", href: "/dashboard/freelancer", icon: LayoutDashboard },
-    { label: "Browse Tasks", href: "/dashboard/freelancer/browse-tasks", icon: Briefcase },
-    { label: "My Proposals", href: "/dashboard/freelancer/my-proposals", icon: FileText },
-    { label: "Ongoing Work", href: "/dashboard/freelancer/ongoing-work", icon: ClipboardList },
-    { label: "Earnings", href: "/dashboard/freelancer/earnings", icon: Wallet },
-    { label: "Profile", href: "/dashboard/freelancer/profile", icon: User },
-    { label: "Settings", href: "/dashboard/freelancer/settings", icon: Settings },
+    {
+      label: "Dashboard", href: "/dashboard/freelancer", icon: LayoutDashboard,
+    },
+    {
+      label: "Browse Tasks", href: "/dashboard/freelancer/browse-tasks", icon: Briefcase,
+    },
+    {
+      label: "My Proposals", href: "/dashboard/freelancer/my-proposals", icon: FileText,
+    },
+    {
+      label: "Active Projects", href: "/dashboard/freelancer/active-projects", icon: ClipboardList,
+    },
+    {
+      label: "My Earnings", href: "/dashboard/freelancer/earnings", icon: Wallet,
+    },
+    {
+      label: "Edit Profile", href: "/dashboard/freelancer/profile", icon: User,
+    },
   ],
   admin: [
     { label: "Dashboard", href: "/dashboard/admin", icon: LayoutDashboard },

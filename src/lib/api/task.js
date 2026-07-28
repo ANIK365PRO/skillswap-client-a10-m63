@@ -13,3 +13,9 @@ export const getMyTasks = async ({userId, status='open'}) => {
 export const getMyTaskById = async (taskId) => {
     return serverFetch(`/api/tasks/${taskId}`);
 }
+
+
+// for GET by task status for freelancer/browse-task page
+export const getTaskByStatus = async (status) => {
+    return serverFetch(`/api/tasks?status=${status}`);
+}

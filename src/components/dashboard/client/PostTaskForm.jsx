@@ -138,6 +138,8 @@ export default function PostTaskForm({task}) {
       ...form,
 
       userId: user?.id || null,
+      clientName: user?.name || "Client",
+      email: user?.email || null,
       status: "open",
       hasApprovedProposal: false,
 
