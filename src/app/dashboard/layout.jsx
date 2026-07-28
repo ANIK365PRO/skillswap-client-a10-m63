@@ -1,15 +1,19 @@
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
+import { getUserSession } from "@/lib/core/session";
 
 
-const DashboardLayout = ({ children }) => {
+const DashboardLayout = async ({ children }) => {
 
-    const user = {
-    name: "Client BD",
-    role: "client",
-    image:
-      "https://static.vecteezy.com/system/resources/previews/040/815/487/non_2x/client-icon-in-logotype-vector.jpg",
-  };
+    const user = await getUserSession();
+      const userId = user?.id;
+
+//     const user = {
+//     name: "Client BD",
+//     role: "client",
+//     image:
+//       "https://static.vecteezy.com/system/resources/previews/040/815/487/non_2x/client-icon-in-logotype-vector.jpg",
+//   };
 
 
   return (

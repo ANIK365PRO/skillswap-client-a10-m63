@@ -10,7 +10,7 @@ const StatCard = ({ title, value }) => {
       "
     >
       <p className="text-sm text-[var(--muted)]">
-        {title}
+        {title} 
       </p>
 
       <h2 className="mt-3 text-3xl font-bold">

@@ -3,14 +3,7 @@ import StatCard from '@/components/dashboard/StatCard';
 
 
 const ClientHomePage = () => {
-    // return (
-    //     <div>
-    //        <h2>ClientHomePage</h2>
-    //          <SidebarMenu></SidebarMenu>
-    //     </div>
-    // );
-
-
+  
      return (
     <div className="p-6">
       <h1 className="mb-8 text-3xl font-bold">

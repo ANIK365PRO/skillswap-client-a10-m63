@@ -13,32 +13,21 @@ export default function DashboardHeader({
     <header
       className="
         sticky top-0 z-40
-        flex h-20 items-center justify-between
+        flex h-16 md:h-20 items-center justify-between
         border-b border-[var(--border)]
         bg-[var(--background)]/80
-        px-4 md:px-6
+        px-3 sm:px-4 md:px-6
         backdrop-blur-xl
+        gap-2
       "
     >
       {/* LEFT */}
-      <div className="flex items-center gap-4">
+      <div className="flex min-w-0 items-center gap-2 sm:gap-4">
         {/* Mobile Sidebar Button */}
-        {/* <button
-          onClick={onMenuClick}
-          className="
-            rounded-xl p-2 lg:hidden
-            hover:bg-[var(--primary)]/10
-          "
-        >
-          <Menu size={22} />
-        </button> */}
+        <SidebarMenu />
 
-    
-        <SidebarMenu></SidebarMenu>
-
-
-        <div>
-          <h1 className="text-2xl font-bold">
+        <div className="min-w-0">
+          <h1 className="truncate text-base sm:text-xl md:text-2xl font-bold">
             Welcome Back,
             <span className="text-[var(--primary)]">
               {" "}
@@ -46,16 +35,16 @@ export default function DashboardHeader({
             </span>
           </h1>
 
-          <p className="text-sm text-[var(--muted)]">
+          <p className="hidden sm:block truncate text-xs md:text-sm text-[var(--muted)]">
             Manage your tasks and projects.
           </p>
         </div>
       </div>
 
       {/* RIGHT */}
-      <div className="flex items-center gap-3">
-        {/* Search */}
-        <div className="relative hidden md:block">
+      <div className="flex shrink-0 items-center gap-1.5 sm:gap-2 md:gap-3">
+        {/* Search - full input on desktop */}
+        <div className="relative hidden lg:block">
           <Search
             size={18}
             className="
@@ -69,7 +58,7 @@ export default function DashboardHeader({
             type="text"
             placeholder="Search..."
             className="
-              h-11 w-64 rounded-2xl
+              h-11 w-48 xl:w-64 rounded-2xl
               border border-[var(--border)]
               bg-[var(--surface)]
               pl-10 pr-4
@@ -79,22 +68,36 @@ export default function DashboardHeader({
           />
         </div>
 
+        {/* Search - icon only on mobile/tablet */}
+        <button
+          className="
+            lg:hidden
+            rounded-2xl p-2.5 sm:p-3
+            border border-[var(--border)]
+            hover:bg-[var(--primary)]/10
+          "
+          aria-label="Search"
+        >
+          <Search size={18} />
+        </button>
+
         {/* Theme */}
         <ThemeSwitch />
 
         {/* Notification */}
         <button
           className="
-            relative rounded-2xl p-3
+            relative rounded-2xl p-2.5 sm:p-3
             border border-[var(--border)]
             hover:bg-[var(--primary)]/10
           "
+          aria-label="Notifications"
         >
-          <Bell size={20} />
+          <Bell size={18} className="sm:h-5 sm:w-5" />
 
           <span
             className="
-              absolute right-2 top-2
+              absolute right-1.5 top-1.5 sm:right-2 sm:top-2
               h-2 w-2 rounded-full
               bg-[var(--danger)]
             "
@@ -104,30 +107,31 @@ export default function DashboardHeader({
         {/* User */}
         <div
           className="
-            flex items-center gap-3
+            flex items-center gap-2 sm:gap-3
             rounded-2xl border
             border-[var(--border)]
             bg-[var(--surface)]
-            px-3 py-2
+            px-1.5 py-1.5 sm:px-3 sm:py-2
           "
         >
           <Image
             src={user?.image || "/avatar.png"}
-            width={42}
-            height={42}
+            width={36}
+            height={36}
             alt="user"
             className="
-              rounded-full
+              h-8 w-8 sm:h-9 sm:w-9 md:h-[42px] md:w-[42px]
+              rounded-full object-cover
               border-2 border-[var(--primary)]
             "
           />
 
-          <div className="hidden md:block">
-            <h3 className="text-sm font-semibold">
+          <div className="hidden md:block max-w-[120px]">
+            <h3 className="truncate text-sm font-semibold">
               {user?.name}
             </h3>
 
-            <p className="text-xs capitalize text-[var(--muted)]">
+            <p className="truncate text-xs capitalize text-[var(--muted)]">
               {user?.role}
             </p>
           </div>

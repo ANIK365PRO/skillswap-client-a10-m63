@@ -1,127 +1,105 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-
-import {
-  LayoutDashboard,
-  PlusCircle,
-  Briefcase,
-  FileText,
-  CreditCard,
-  User,
-  Settings,
-  LogOut,
-  Layers,
-} from "lucide-react";
-
-const navLinks = [
-  {
-    label: "Dashboard",
-    href: "/dashboard/client",
-    icon: LayoutDashboard,
-  },
-  {
-    label: "Post Task",
-    href: "/dashboard/client/post-task",
-    icon: PlusCircle,
-  },
-  {
-    label: "My Tasks",
-    href: "/dashboard/client/my-tasks",
-    icon: Briefcase,
-  },
-  {
-    label: "Manage Proposals",
-    href: "/dashboard/client/manage-proposals",
-    icon: FileText,
-  },
-  {
-    label: "Payments",
-    href: "/dashboard/client/payments",
-    icon: CreditCard,
-  },
-  {
-    label: "Profile",
-    href: "/dashboard/client/profile",
-    icon: User,
-  },
-  {
-    label: "Settings",
-    href: "/dashboard/client/settings",
-    icon: Settings,
-  },
-];
+import { usePathname, useRouter } from "next/navigation";
+import { LogOut, Layers } from "lucide-react";
+import { useState } from "react";
+import { NAV_CONFIG, ROLE_LABELS } from "@/lib/navConfig";
+import { authClient } from "@/lib/auth-client";
 
 export default function DashboardSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+
+  const role = user?.role || "client";
+  const navLinks = NAV_CONFIG[role] || NAV_CONFIG.client;
+  const dashboardLabel = ROLE_LABELS[role] || "Dashboard";
+
+  const isActive = (href) => {
+    const baseHref = `/dashboard/${role}`;
+    return href === baseHref
+      ? pathname === href
+      : pathname === href || pathname.startsWith(href + "/");
+  };
+
+  const handleLogout = async () => {
+    try {
+      setLoggingOut(true);
+      await authClient.signOut();
+      router.push("/login");
+    } catch (err) {
+      console.error("Logout failed:", err);
+    } finally {
+      setLoggingOut(false);
+    }
+  };
 
   return (
     <aside
-    className="
+      className=" h-screen sticky top-0
         hidden lg:flex flex-col
         w-[var(--sidebar-width)]
         bg-[var(--sidebar-bg)]
         border-r border-[var(--border)]
-    "
+      "
     >
       {/* Logo */}
-      <div className="border-b p-6">
+      <div className="border-b border-[var(--border)] p-6">
         <div className="flex items-center gap-3">
           <div
-                className="
-                    flex h-11 w-11 items-center justify-center
-                    rounded-xl
-                    bg-[var(--primary)]
-                    text-[var(--accent)]
-                "
-                >
-                <Layers />
+            className="
+              flex h-11 w-11 items-center justify-center
+              rounded-xl
+              bg-[var(--primary)]
+              text-[var(--accent)]
+            "
+          >
+            <Layers />
           </div>
 
           <div>
             <h2 className="text-xl font-bold">
               Skill
-              <span className="text-[#1E6091] dark:text-[#FFC300]">
+              <span className="text-[var(--secondary)] dark:text-[var(--accent)]">
                 Swap
               </span>
             </h2>
 
-            <p className="text-xs text-default-500">
-              Client Dashboard
+            <p className="text-xs text-[var(--muted)]">
+              {dashboardLabel}
             </p>
           </div>
         </div>
       </div>
 
       {/* Nav */}
-      <div className="flex-1 p-4">
+      <div className="flex-1 overflow-y-auto p-4">
         <ul className="space-y-2">
           {navLinks.map((item) => {
             const Icon = item.icon;
+            const active = isActive(item.href);
 
             return (
               <li key={item.label}>
                 <Link
                   href={item.href}
                   className={`
-                        flex items-center gap-3
-                        rounded-2xl px-4 py-3
-                        transition-all duration-200
-
-                        ${
-                        pathname === item.href
-                            ? "bg-[var(--primary)] text-white"
-                            : "text-[var(--muted)] hover:bg-[var(--primary)]/10"
-                        }
-                    `
+                    flex items-center gap-3
+                    rounded-2xl px-4 py-3
+                    transition-all duration-200
+                    ${
+                      active
+                        ? "bg-[var(--primary)] text-white"
+                        : "text-[var(--muted)] hover:bg-[var(--primary)]/10"
                     }
+                  `}
                 >
                   <Icon size={18} />
-
-                  <span className="font-medium">
-                    {item.label}
-                  </span>
+                  <span className="font-medium">{item.label}</span>
                 </Link>
               </li>
             );
@@ -130,18 +108,23 @@ export default function DashboardSidebar() {
       </div>
 
       {/* Logout */}
-      <div className="border-t p-4">
+      <div className="border-t border-[var(--border)] p-4">
         <button
-            className="
-                flex w-full items-center gap-3
-                rounded-2xl px-4 py-3
-                text-[var(--danger)]
-                transition-all duration-200
-                hover:bg-red-500/10
-            "
-            >
-            <LogOut size={18} />
-            <span className="font-medium">Logout</span>
+          onClick={handleLogout}
+          disabled={loggingOut}
+          className="
+            flex w-full items-center gap-3
+            rounded-2xl px-4 py-3
+            text-[var(--danger)]
+            transition-all duration-200
+            hover:bg-red-500/10
+            disabled:opacity-50
+          "
+        >
+          <LogOut size={18} />
+          <span className="font-medium">
+            {loggingOut ? "Logging out..." : "Logout"}
+          </span>
         </button>
       </div>
     </aside>

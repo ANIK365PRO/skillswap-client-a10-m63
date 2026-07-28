@@ -20,8 +20,24 @@
   --danger: #EF4444;
   --info: #0ea5e9;
 
+   /* Layout */
   --sidebar-width: 18rem;
+  --header-height: 4rem;
   --sidebar-bg: var(--surface);
+
+  /* Focus */
+  --focus: var(--secondary);
+  --focus-ring: rgba(30, 96, 145, .2);
+
+  /* Radius */
+  --radius-sm: .75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,.08);
+  --shadow-lg: 0 12px 30px rgba(0,0,0,.12);
 }
 
 .dark {
@@ -34,6 +50,30 @@
   --mutedText: #94A3BB;     /*Muted Text*/
 
   --sidebar-bg: #162033;
+
+  --focus: #1E6091;
+  --focus-ring: rgba(30,96,145,.25);
+}
+
+
+@theme {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-mutedText: var(--mutedText);
+
+  --color-border: var(--border);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
 }
 
 

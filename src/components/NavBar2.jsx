@@ -39,7 +39,6 @@ export default function NavBar2 () {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [activeRoute, setActiveRoute] = useState();
 
-    // const pathname = usePathname()
 
     const { data: session } = authClient.useSession();
 
