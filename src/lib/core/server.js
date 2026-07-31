@@ -15,7 +15,7 @@ export const serverFetch = async(path) => {
  // সার্ভার সাইডে ডেটা মিউটেশন করার জন্য একটি হেল্পার ফাংশন
 // for POST and PATCH
 
-export const serverMutation = async(path, data, method = 'POST') =>{
+export const serverMutation = async(path, data={}, method = 'POST') =>{
     const res = await fetch(`${baseUrl}${path}`, {
         method: method,  //'POST' / 'PATCH'
         headers:{

@@ -171,10 +171,24 @@ const MyTasksTable = ({tasks}) => {
                     </Chip>
                   </Table.Cell>
 
+
+
                   {/* Actions */}
 
                   <Table.Cell>
                     <div className="flex justify-end gap-2">
+
+
+                    {/* Manage Proposals */}
+                    <Link href={`/dashboard/client/manage-proposals/${task._id}`}>
+                        <Button
+                          size="sm"
+                          className="bg-primary text-white"
+                        >
+                          Proposals
+                        </Button>
+                    </Link>
+
                       {task.status === "open" &&
                       !task.hasApprovedProposal ? (
                         <>

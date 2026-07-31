@@ -14,11 +14,15 @@ import {
   TextField,
   Chip,
 } from "@heroui/react";
+import { createProposal } from "@/lib/actions/proposals";
 
-import { createProposal } from "@/lib/actions/task";
+// import { createProposal } from "@/lib/actions/task";
 
 
-const ProposalForm = ({ taskId, freelancerEmail }) => {
+const ProposalForm = ({ taskId, freelancer }) => {
+
+  console.log('freelancer in ProposalForm ' , freelancer)
+  
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
@@ -74,7 +78,9 @@ const ProposalForm = ({ taskId, freelancerEmail }) => {
 
     const proposal = {
       taskId,
-      freelancerEmail,
+      freelancerEmail: freelancer?.email,
+      freelancerName: freelancer?.name,
+      freelancerImage: freelancer?.image,
 
       proposedBudget: Number(
         formData.get("proposedBudget")
@@ -102,7 +108,7 @@ const ProposalForm = ({ taskId, freelancerEmail }) => {
     setLoading(true);
 
     try {
-        const response = await createProposal(proposal);
+        const response = await createProposal(proposal);  // call post porposal api
 
         // যদি Success / InsertedId পাওয়া যায়
         if (response?.insertedId || response?.success) {
@@ -179,7 +185,9 @@ const ProposalForm = ({ taskId, freelancerEmail }) => {
             color="primary"
             size="sm"
           >
-            {freelancerEmail}
+            {/* email */}
+
+            { freelancer?.email }
           </Chip>
 
         </div>

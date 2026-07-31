@@ -10,7 +10,7 @@ export const NAV_CONFIG = {
     { label: "Dashboard", href: "/dashboard/client", icon: LayoutDashboard },
     { label: "Post Task", href: "/dashboard/client/post-task", icon: PlusCircle },
     { label: "My Tasks", href: "/dashboard/client/my-tasks", icon: Briefcase },
-    { label: "Manage Proposals", href: "/dashboard/client/manage-proposals", icon: FileText },
+    // { label: "Manage Proposals", href: "/dashboard/client/manage-proposals/[taskId]", icon: FileText },
     { label: "Payments", href: "/dashboard/client/payments", icon: CreditCard },
     { label: "Profile", href: "/dashboard/client/profile", icon: User },
     { label: "Settings", href: "/dashboard/client/settings", icon: Settings },

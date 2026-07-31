@@ -23,7 +23,7 @@ export const deleteTaskPost = async (id) => {
 }
 
 
-// 'POST' api for proposal
-export const createProposal = async (proposalData) => {
-  return serverMutation("/api/proposals",proposalData);
-};
+// // 'POST' api for proposal
+// export const createProposal = async (proposalData) => {
+//   return serverMutation("/api/proposals",proposalData);
+// };

@@ -9,9 +9,10 @@ const TaskDetailsPage = async ({ params }) => {
   const { id } = await params;
 
   const task = await getMyTaskById(id);
-  console.log(task)
+  console.log("TaskDetailsPage in getMyTaskById", task)
 
   const user = await getUserSession()
+  // console.log(user)
 
   return (
     <div className="mx-auto max-w-5xl p-6">
@@ -129,7 +130,7 @@ const TaskDetailsPage = async ({ params }) => {
 
         {/* ProposalForm Component */}
 
-        <ProposalForm taskId={task?._id} freelancerEmail={user?.email} ></ProposalForm>
+        <ProposalForm taskId={task?._id} freelancer={user} ></ProposalForm>
 
 
       </Card>

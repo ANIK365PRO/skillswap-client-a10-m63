@@ -15,7 +15,7 @@
 
 import { useEffect, useState } from "react";
 import { Chip, Table, Spinner } from "@heroui/react";
-import { getMyProposals } from "@/lib/api/task";
+import { getMyProposals } from "@/lib/api/proposals";
 import { authClient } from "@/lib/auth-client";
 
 const MyProposalsPage = () => {

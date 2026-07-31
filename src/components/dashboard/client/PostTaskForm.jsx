@@ -138,10 +138,12 @@ export default function PostTaskForm({task}) {
       ...form,
 
       userId: user?.id || null,
-      clientName: user?.name || "Client",
+      clientName: user?.name || "User",
       email: user?.email || null,
       status: "open",
       hasApprovedProposal: false,
+      paymentStatus: "unpaid",
+
 
       budget: Number(form.budget),
 
