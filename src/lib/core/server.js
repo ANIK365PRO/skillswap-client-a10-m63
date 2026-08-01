@@ -16,8 +16,9 @@ export const serverFetch = async(path) => {
 // for POST and PATCH
 
 export const serverMutation = async(path, data={}, method = 'POST') =>{
+    
     const res = await fetch(`${baseUrl}${path}`, {
-        method: method,  //'POST' / 'PATCH'
+        method: method,        //'POST' / 'PATCH'
         headers:{
             'content-type': 'application/json'
         },

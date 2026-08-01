@@ -1,15 +1,3 @@
-
-
-// const PaymentsPage = () => {
-//     return (
-//         <div>
-//             <h2>PaymentsPage</h2>
-//         </div>
-//     );
-// };
-
-// export default PaymentsPage;
-
 "use client";
 
 import { useState } from "react";
@@ -21,8 +9,13 @@ import {
   ShieldCheck,
   User,
 } from "lucide-react";
+import { paymentSuccess } from "@/lib/actions/task";
 
-const PaymentCheckoutPage = () => {
+const PaymentCheckoutClient = ({ task, proposal,}) => {
+
+  console.log('task in PaymentCheckoutClient form page', task)
+
+
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
@@ -41,21 +34,33 @@ const PaymentCheckoutPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setLoading(true);
-
     // TODO:
     // PATCH /api/tasks/:id/payment-success
     // Update task status => "in-progress"
     // paymentStatus => "paid"
 
-    setTimeout(() => {
-      console.log("Payment Successful!");
+      const result = await paymentSuccess(task._id);
 
-      router.push("/dashboard/client");
-    }, 1500);
+        if (result.success) {
+          router.push("/dashboard/client/payments");
+        } else {
+          alert(result.message);
+        }
+
+     setLoading(false);
+
+    // setTimeout(() => {
+    //   console.log("Payment Successful!");
+
+    //   router.push("/dashboard/client/payments");
+      
+    // }, 1500);
+  
   };
 
   return (
@@ -85,7 +90,7 @@ const PaymentCheckoutPage = () => {
                 <span className="text-muted">Task</span>
 
                 <span className="font-medium text-foreground">
-                  Portfolio Website Design
+                    {task?.title} 
                 </span>
               </div>
 
@@ -93,7 +98,7 @@ const PaymentCheckoutPage = () => {
                 <span className="text-muted">Freelancer</span>
 
                 <span className="font-medium text-foreground">
-                  freelancer@5.com
+                  {task.assignedFreelancerEmail} 
                 </span>
               </div>
 
@@ -101,17 +106,18 @@ const PaymentCheckoutPage = () => {
                 <span className="text-muted">Estimated Days</span>
 
                 <span className="font-medium text-foreground">
-                  5 Days
+                 {proposal.estimatedDays} Days
                 </span>
               </div>
 
               <div className="flex items-center justify-between border-t border-border pt-4 text-lg font-bold">
                 <span>Total</span>
 
-                <span className="text-accent">$250</span>
+                <span className="text-accent">${proposal.proposedBudget} </span>
               </div>
             </div>
           </div>
+
 
           {/* Secure Payment Info */}
           <div className="rounded-[var(--radius-md)] border border-border bg-success/10 p-5">
@@ -130,7 +136,9 @@ const PaymentCheckoutPage = () => {
               </div>
             </div>
           </div>
+
         </div>
+
 
         {/* Right Side */}
         <div className="rounded-[var(--radius-lg)] border border-border bg-surface p-8 shadow-md">
@@ -316,15 +324,17 @@ const PaymentCheckoutPage = () => {
               ) : (
                 <>
                   <CircleCheckBig size={20} />
-                  Pay $250
+                 Pay ${proposal.proposedBudget}
                 </>
               )}
             </button>
           </form>
+
         </div>
+
       </div>
     </div>
   );
 };
 
-export default PaymentCheckoutPage;
+export default PaymentCheckoutClient;

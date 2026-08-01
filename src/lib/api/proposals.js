@@ -12,3 +12,9 @@ export const getMyProposals = async (email) => {
 export const getTaskProposals = async (taskId) => {
   return serverFetch(`/api/proposals?taskId=${taskId}`);
 };
+
+
+// get for client payment view
+export const getProposalById = async (id) => {
+  return serverFetch(`/api/proposals/${id}`);
+};

@@ -23,7 +23,14 @@ export const deleteTaskPost = async (id) => {
 }
 
 
-// // 'POST' api for proposal
-// export const createProposal = async (proposalData) => {
-//   return serverMutation("/api/proposals",proposalData);
-// };
+//-------------------------------
+
+
+//Payment Success 'PATCH' action-
+export const paymentSuccess = async (id) => {
+  return serverMutation(
+    `/api/tasks/${id}/payment-success`,
+    {},
+    "PATCH"
+  );
+};

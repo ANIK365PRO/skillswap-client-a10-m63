@@ -41,49 +41,26 @@ const ManageProposalsClient = ({proposals}) => {
 
   const [proposalList, setProposalList] = useState(proposals);
 
-//   const handleAccept = (id) => {
-//     setProposalList((prev) =>
-//       prev.map((proposal) =>
-//         proposal.id === id
-//           ? { ...proposal, status: "accepted" }
-//           : { ...proposal, status: "rejected" }
-//       )
-//     );
 
-//     setTimeout(() => {
-//       router.push("/payment/checkout");
-//     }, 500);
-//   };
-
-
-//   const handleReject = (id) => {
-//     setProposalList((prev) =>
-//       prev.map((proposal) =>
-//         proposal.id === id
-//           ? { ...proposal, status: "rejected" }
-//           : proposal
-//       )
-//     );
-//   };
-
-    const handleAccept = async (id) => {
-        const result = await acceptProposal(id);
+    const handleAccept = async (proposal) => {
+        const result = await acceptProposal(proposal._id); //proposals.taskId
 
         console.log(result); // এটা add করো
 
         if (result.success) {
-            router.push("/payment/checkout")    // redirect to 
+            router.push(`/payment/checkout/${proposal.taskId}`)    
+            // redirect to 
             // router.refresh();
         }
     };
 
-    const handleReject = async (id) => {
-  const result = await rejectProposal(id);
+    const handleReject = async (proposall) => {
+  const result = await rejectProposal(proposall._id);
 
   if (result.success) {
     setProposalList((prev) =>
       prev.map((proposal) =>
-        proposal._id === id
+        proposal._id === proposall._id
           ? { ...proposal, status: "rejected" }
           : proposal
       )
@@ -274,7 +251,7 @@ const ManageProposalsClient = ({proposals}) => {
                       
                       <button
                         disabled={proposal.status !== "pending"}
-                        onClick={() => handleAccept(proposal._id)}
+                        onClick={() => handleAccept(proposal)}
                         className="
                           flex items-center gap-2
                           rounded-[var(--radius-sm)]
@@ -294,7 +271,7 @@ const ManageProposalsClient = ({proposals}) => {
 
                       <button
                         disabled={proposal.status !== "pending"}
-                        onClick={() => handleReject(proposal._id)}
+                        onClick={() => handleReject(proposal)}
                         className="
                           flex items-center gap-2
                           rounded-[var(--radius-sm)]
@@ -406,7 +383,7 @@ const ManageProposalsClient = ({proposals}) => {
 
                 <button
                   disabled={proposal.status !== "pending"}
-                  onClick={() => handleAccept(proposal._id)}
+                  onClick={() => handleAccept(proposal)}
                   className="
                     flex-1 rounded-[var(--radius-sm)]
                     bg-success px-4 py-2
@@ -418,7 +395,7 @@ const ManageProposalsClient = ({proposals}) => {
 
                 <button
                   disabled={proposal.status !== "pending"}
-                 onClick={() => handleReject(proposal._id)}
+                 onClick={() => handleReject(proposal)}
                   className="
                     flex-1 rounded-[var(--radius-sm)]
                     bg-danger px-4 py-2

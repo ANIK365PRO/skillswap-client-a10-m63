@@ -20,11 +20,12 @@ export const getTaskByStatus = async (status) => {
     return serverFetch(`/api/tasks?status=${status}`);
 }
 
-// // 'GET' proposals for logged-in freelancer
-// export const getMyProposals = async (email) => {
-//   return serverFetch(`/api/proposals?freelancerEmail=${email}`);
-// };
+//--------------------------------
 
+//  proposal._id to get task for payment 
+export const getTaskById = async (id) => {
+  return serverFetch(`/api/tasks/${id}`);
+};
 
 
 
