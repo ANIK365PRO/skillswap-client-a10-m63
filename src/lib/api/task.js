@@ -28,4 +28,8 @@ export const getTaskById = async (id) => {
 };
 
 
+// 
+export const getFreelancerProjects = async (email) => {
+  return serverFetch(`/api/freelancer/projects/${email}`);
+};
 

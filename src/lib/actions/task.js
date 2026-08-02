@@ -34,3 +34,14 @@ export const paymentSuccess = async (id) => {
     "PATCH"
   );
 };
+
+
+
+// for freelancer deliverable
+export const submitDeliverable = async (taskId, data) => {
+  return serverMutation(
+    `/api/tasks/${taskId}/deliverable`,
+    data,
+    "PATCH"
+  );
+};
