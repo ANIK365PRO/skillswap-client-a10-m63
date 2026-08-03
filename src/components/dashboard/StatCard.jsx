@@ -1,21 +1,44 @@
-const StatCard = ({ title, value }) => {
+const StatCard = ({
+  title,
+  value,
+  icon,
+  color = "bg-primary",
+}) => {
   return (
     <div
       className="
       rounded-3xl
-      border border-[var(--border)]
-      bg-[var(--surface)]
+      border-border
+      bg-surface
       p-6
-      shadow-sm
+      shadow-md
+      transition-all
+      hover:-translate-y-1
+      hover:shadow-xl
       "
     >
-      <p className="text-sm text-[var(--muted)]">
-        {title} 
-      </p>
+      <div className="flex items-center justify-between ">
+        <div>
+          <p className="text-sm text-muted">
+            {title}
+          </p>
 
-      <h2 className="mt-3 text-3xl font-bold">
-        {value}
-      </h2>
+          <h2 className="mt-3 text-3xl font-bold text-foreground">
+            {value}
+          </h2>
+        </div>
+
+        <div
+          className={`
+            flex h-14 w-14 items-center justify-center
+            rounded-2xl
+            ${color}
+            text-white
+          `}
+        >
+          {icon}
+        </div>
+      </div>
     </div>
   );
 };

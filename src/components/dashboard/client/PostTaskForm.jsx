@@ -15,6 +15,7 @@ import {
 } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
 import { createTaskPost, updateTaskPost } from "@/lib/actions/task";
+import { useRouter } from "next/navigation";
 
 
 const categories = [
@@ -42,6 +43,8 @@ export default function PostTaskForm({task}) {
   const {data: session } = authClient.useSession();
   const user = session?.user;
   // console.log("User session in PostTaskForm:", user);
+
+  const router = useRouter();
 
   const isEdit = !!task; // for edit mode, check if task prop is provided
 
@@ -160,6 +163,7 @@ export default function PostTaskForm({task}) {
 
       alert("Task updated successfully!");
 
+     
         setForm({
         title: "",
         category: "",
@@ -172,9 +176,14 @@ export default function PostTaskForm({task}) {
     } else {
       console.log("CREATE TASK", payload);
 
-      await createTaskPost(payload);  // POST API call to create a new task
+      const result = await createTaskPost(payload);  // POST API call to create a new task
 
       alert("Task posted successfully!");
+
+      // todo
+      if (result.success) {
+          router.push("/dashboard/client/my-tasks"); // Redirect to the "My Tasks" page after successful creation
+        }
 
       setForm({
         title: "",

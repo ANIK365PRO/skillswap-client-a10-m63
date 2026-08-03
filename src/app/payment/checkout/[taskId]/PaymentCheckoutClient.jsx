@@ -14,6 +14,7 @@ import { paymentSuccess } from "@/lib/actions/task";
 const PaymentCheckoutClient = ({ task, proposal,}) => {
 
   console.log('task in PaymentCheckoutClient form page', task)
+  // console.log('proposal in PaymentCheckoutClient form page', proposal)
 
 
   const router = useRouter();

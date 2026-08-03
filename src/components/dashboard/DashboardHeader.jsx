@@ -31,20 +31,30 @@ export default function DashboardHeader({
             Welcome Back,
             <span className="text-[var(--primary)]">
               {" "}
-              {user?.name || "Client"}
+              {user?.name }
             </span>
           </h1>
 
           <p className="hidden sm:block truncate text-xs md:text-sm text-[var(--muted)]">
-            Manage your tasks and projects.
+            {
+               user?.role === 'freelancer' && 'Track your projects and proposals'
+            }
+            {
+               user?.role === 'client' && 'Manage your tasks and projects'
+            }
+            {
+               user?.role === 'admin' && 'Manage users, tasks and payments'
+            }
+            
           </p>
         </div>
       </div>
 
       {/* RIGHT */}
       <div className="flex shrink-0 items-center gap-1.5 sm:gap-2 md:gap-3">
+        
         {/* Search - full input on desktop */}
-        <div className="relative hidden lg:block">
+        {/* <div className="relative hidden lg:block">
           <Search
             size={18}
             className="
@@ -66,10 +76,10 @@ export default function DashboardHeader({
               focus:border-[var(--primary)]
             "
           />
-        </div>
+        </div> */}
 
         {/* Search - icon only on mobile/tablet */}
-        <button
+        {/* <button
           className="
             lg:hidden
             rounded-2xl p-2.5 sm:p-3
@@ -79,7 +89,10 @@ export default function DashboardHeader({
           aria-label="Search"
         >
           <Search size={18} />
-        </button>
+        </button> */}
+
+
+
 
         {/* Theme */}
         <ThemeSwitch />
