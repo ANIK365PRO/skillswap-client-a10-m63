@@ -28,7 +28,10 @@ export const auth = betterAuth({
             clientSecret: process.env.GOOGLE_CLIENT_SECRET 
         }, 
   },
-
+  
+ trustedOrigins: [
+    process.env.NEXT_PUBLIC_BASE_URL,
+  ],
 
   // role base authentication to additional fields. 
 

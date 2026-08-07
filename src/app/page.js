@@ -5,17 +5,20 @@ import Statistics from "@/components/home/Statistics";
 
 import Testimonials from "@/components/home/Testimonials";
 import TopFreelancers from "@/components/home/TopFreelancers";
+import { getUserSession } from "@/lib/core/session";
 
 
-export default function Home() {
+export default async function Home() {
+
+  const user = await getUserSession()
   return (
       <>
-      <HeroBanner></HeroBanner>
-      <TopFreelancers>  </TopFreelancers>
+      <HeroBanner user={user}></HeroBanner>
       <Featured>  </Featured>
+      <TopFreelancers>  </TopFreelancers>
       <HowItWorks></HowItWorks>
-      <Testimonials></Testimonials>
       <Statistics></Statistics>
+      {/* <Testimonials></Testimonials> */}
       </>
 
   );
